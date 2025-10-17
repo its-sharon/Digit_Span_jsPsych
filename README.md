@@ -1,5 +1,3 @@
-# Digit Span Task created with jsPsych
-
 # Digit Span Task (jsPsych)
 
 This repository contains a **Digit Span Task** implemented using **jsPsych** (de Leeuw, J. R., 2015), a library for creating behavioral experiments in a web browser. The task measures an individual's short-term working memory capacity.
