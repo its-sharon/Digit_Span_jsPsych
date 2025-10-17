@@ -1,53 +1,88 @@
 # Digit Span Task created with jsPsych
 
-<p>A Digit Span Task created with jsPsych <a href="https://link.springer.com/article/10.3758/s13428-014-0458-y">de Leeuw, J. R., 2015</a>.</p>
+# Digit Span Task (jsPsych)
 
-<h2>Citation</h2>
-If you use the script, please include this citation in your manuscript:
+This repository contains a **Digit Span Task** implemented using **jsPsych** (de Leeuw, J. R., 2015), a library for creating behavioral experiments in a web browser. The task measures an individual's short-term working memory capacity.
 
-Vékony, T. (2021). Digit Span Task created with jsPsych (Version 1.0.0) [Computer software]. https://doi.org/10.5281/zenodo.7096258
-<a href="https://zenodo.org/badge/latestdoi/339664153"><img src="https://zenodo.org/badge/339664153.svg" alt="DOI"></a>
+---
 
+## 🚀 Getting Started
 
-<h2>Structure of the task</h2>
-<p>One digit (1-9) per second appears one the screen (only one at a time). The task of the user is to try to remember the digits in their order of appearance. After a few digits, a textbox appears on the screen and the user have to type in their answer. The answer can be submitted by clicking on the 'Continue' button, or by hitting Enter.</p>
+To run the task, open the `index.html` file located in either the **`offline`** or **`online`** folder.
 
-<img src="static/images/instruction.png" width="500px" /><figcaption><i>The Digit Span task. The user has to try to remember the presented digits in their order of appearance.</i></figcaption>
- 
-<p>The task starts with two practice runs (with 2 digits per run). Here, the user receive feedback whether their answer was correct. After the two practice runs, the task begins. Altogether, seven levels can be completed. On the first level, three digits are presented, and on each level, the length of the digit stream become one digit longer (i.e., the maximum length is 9 digits). Each level contains four trials. If the user answers correctly in three out of the four trials, the next level is presented. If the level is not completed successfully (i.e., the user answers correctly for less than three trials), the task ends.</p>
+| Folder | Subject ID & Session | Use Case |
+| :--- | :--- | :--- |
+| **`offline`** | Subject and session numbers can be customized upon startup. | Local testing, lab settings. |
+| **`online`** | A 15-character long random subject ID is automatically generated. | Online data collection. |
 
-<h2>Output file</h2>
+### Browser Requirements
 
-- <strong>success:</strong> whether fullscreen mode was successfully started/ended (true or false)
-- <strong>trial_type:</strong> jsPsych trialtype of the given trial (fullscreen, html-keyboard-response or survey-html-form)
-- <strong>trial_index:</strong> the number of the given trials (all events considered, even instructions, feedbacks!)
-- <strong>time_elapsed:</strong> the time elapsed from the start of the script in ms
-- <strong>subject:</strong> a 15-character long random subject ID for online version, and customized subject number for offline version
-- <strong>session:</strong> customized session number (for offline version only)
-- <strong>internal_code_id:</strong> internal node id of the trial
-- <strong>browser_event:</strong> browser events at the given trial (fullscreenenter, fullscreenexit, blur or focus)
-- <strong>view_history:</strong> viewing data about the instruction trial
-- <strong>rt:</strong> the reaction time for submitting the answer
-- <strong>test_part:</strong> the part of the task (instruction, start_practice, stimulus, answer, feedback, start_task, debrief)
-- <strong>stimulus:</strong> stimulus on the screen in HTML
-- <strong>key_press:</strong> number code of the key pressed
-- <strong>level:</strong> the level of the task (2 for the practice runs, 3-9 for the task runs)
-- <strong>correct_answer:</strong> the stimulus stream, the correct answer
-- <strong>number_within_level:</strong> the number of the trial within the given level (1-2 for the practice runs, 1-4 for the task runs)
-- <strong>number_within_run:</strong> the number of the stimulus within the run (1-2 for the practice runs, 1-9 for the task runs)
-- <strong>is_mistake:</strong> if the answer given was uncorrect (0 - the answer was correct; 1 - the answer was incorrect)
-- <strong>responses:</strong> the answer typed in the input field (in an object)
-- <strong>digit_span:</strong> the digit span score (the length of the run where at least 3/4 trials were correctly remembered)
+The task is compatible with most modern browsers, with **Chrome** being recommended.
 
-<h2>Setting options</h2>
-<p>You can set the following parameters by modifying the <i>parameters.js</i> file:</p>
-<ul>
-    <li>duration of the stimulus (in ms): the digits' presentation time (default: 1000 ms)</li>
-    <li>language: currently available languages are: english (en), hungarian (hu), spanish (es), french (fr), portuguese (pt)</li>
-</ul>
+**Incompatible Browsers:** Safari and Internet Explorer.
 
-<h2>How to start the task</h2>
-Open the <i>index.html</i> file in either the <i>offline</i> or <i>online</i> folder. When the offline version is started, you can customize the subject and session numbers (any number is accepted). If you start the offline version, a random subject ID will be allocated.
+---
 
-<h2>Browser requirements</h2>
-<p>Any browser except Safari and Internet Explorer. Recommended: Chrome</p>
+## 🧠 Task Structure and Procedure
+
+The Digit Span Task requires the user to recall a sequence of visually presented digits in the correct order of appearance.
+
+### Stimulus Presentation
+
+* **Digits:** Single digits (1-9) are presented one at a time on the screen.
+* **Rate:** Each digit appears for **1 second (1000 ms)**.
+* **Response:** After the sequence is complete, a textbox appears. The user must type their remembered sequence and submit the answer by clicking the **'Continue'** button or hitting the **'Enter'** key.
+
+### Levels and Progression
+
+The task consists of up to seven levels, starting with practice runs.
+
+1.  **Practice Runs:** Two runs are presented, each with a length of **2 digits**. Immediate feedback on correctness is provided.
+2.  **Task Runs:** The main task starts at a sequence length of **3 digits**.
+    * **Length Progression:** The sequence length increases by one digit for each subsequent level, up to a maximum of **9 digits**.
+    * **Trials per Level:** Each level consists of **four trials**.
+    * **Advancement:** To proceed to the next level, the user must correctly recall the sequence in **at least three out of the four trials** (75% accuracy).
+    * **Task End:** If the user fails to meet the criterion (fewer than three correct answers) for the current level, the task terminates.
+
+---
+
+## ⚙️ Setting Options
+
+You can customize the task parameters by modifying the **`parameters.js`** file.
+
+| Parameter | Description | Default Setting |
+| :--- | :--- | :--- |
+| **Duration of Stimulus** | The presentation time for each digit. | 1000 ms |
+| **Language** | Task instructions and text. | English (`en`) |
+
+**Available Languages:** English (`en`), Hungarian (`hu`), Spanish (`es`), French (`fr`), Portuguese (`pt`).
+
+---
+
+## 💾 Output File Data
+
+The experiment generates a data file with the following key variables:
+
+| Variable | Description |
+| :--- | :--- |
+| **`subject`** | 15-character random ID (online) or customized number (offline). |
+| **`session`** | Customized session number (offline version only). |
+| **`trial_type`** | jsPsych trial type (e.g., `survey-html-form`, `html-keyboard-response`). |
+| **`trial_index`** | Cumulative number of all events (including instructions and feedback). |
+| **`time_elapsed`** | Time since the script started, in milliseconds (ms). |
+| **`test_part`** | The segment of the task (e.g., `instruction`, `stimulus`, `answer`, `feedback`, `debrief`). |
+| **`level`** | The current length of the digit sequence (2 for practice, 3-9 for main task). |
+| **`number_within_level`** | Trial count within the current level (1-2 for practice, 1-4 for main task). |
+| **`correct_answer`** | The correct stimulus stream (the sequence of digits presented). |
+| **`responses`** | The sequence typed by the user in the input field. |
+| **`rt`** | Reaction time for submitting the answer (in ms). |
+| **`is_mistake`** | Indicates incorrect response (0 = correct, 1 = incorrect). |
+| **`digit_span`** | The final Digit Span score (the maximum sequence length for which the 3/4 trial criterion was met). |
+| **`success`** | Indicates whether fullscreen mode successfully started/ended (`true` or `false`). |
+| **`browser_event`** | Records relevant browser events (e.g., `blur`, `focus`, `fullscreenenter`). |
+
+---
+
+## 📝 Citation
+
+If you use this script in your research, please include the following citation in your manuscript: Vékony, T. (2021). Digit Span Task created with jsPsych (Version 1.0.0) [Computer software]. https://doi.org/10.5281/zenodo.7096258
